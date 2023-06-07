@@ -1,0 +1,20 @@
+<div class="container">
+    <h1 class="text-center header-text mt-5 header">COMPANY DETAILS</h1>
+    <div class="row">
+       <div class="col-md-6  mt-5">
+        <h2 class="mt-5">{{companyData.name}}</h2>
+        <h3 class="mt-4">{{companyData.address}}</h3>
+        <div>
+            <button class="btn btn-primary back-button mt-5" (click)="goBack()">
+                <i class="fas fa-arrow-left"></i> Back To Companies
+            </button>
+        </div>
+            <button class="btn btn-primary mt-5" (click)="onUserListClick()">See {{companyData.name}} company's Users list</button>
+        </div>
+    <div class="col-md-6 mt-5">
+        <app-map [companyData]="companyData"></app-map>
+    </div>
+</div>
+</div>
+
+

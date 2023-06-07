@@ -1,0 +1,15 @@
+.custom-navbar{
+    height: 100px;
+}
+
+.custom-navbar .navbar-brand {
+    font-size: 24px;
+    margin-right: 50px;
+  }
+
+.custom-navbar .nav-link {
+    font-size: 22px; 
+    margin-right: 50px;
+    font-weight: bold;
+    margin-top: 1px;
+  }

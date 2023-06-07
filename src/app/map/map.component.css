@@ -1,0 +1,19 @@
+.map {
+    width: 30vw;
+    height: 50vh;
+    border: 1px solid grey;
+  }
+  
+  
+.marker {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -100%);
+    color: red;
+    font-size: 24px;
+  }
+  
+.map-container{
+    display: inline-block;
+  }

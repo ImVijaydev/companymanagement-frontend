@@ -1,0 +1,70 @@
+  <div class="main d-flex align-items-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 col-md-10 col-sm-12">
+                <div class="form-box px-5 py-4">
+                    <form class="userForm" [formGroup]="userForm" (submit)="onSubmit()">
+                        <h2 class="text-center mb-5">{{isMigrateUser? "MIGRATE USER": isUpdateUser? "UPDATE USER": "REGISTER USER"}}</h2>
+                        <div class="mb-5">
+                            <input type="text" *ngIf="!isUpdateUser"  name="" placeholder="FirstName" class="form-control" id="firstName" formControlName="firstName">
+                            <input type="text" *ngIf="isUpdateUser"  name="" placeholder="FirstName" class="form-control" id="firstName" formControlName="firstName" [(ngModel)]="updatedUserData.first_name">
+                            <div *ngIf="userForm.get('firstName')?.invalid && userForm.get('firstName')?.touched" class="text-danger">
+                                <div *ngIf="userForm.get('firstName')?.errors?.required">First Name is required.</div>
+                            </div>
+                        </div>
+                        <div class="mb-5">
+                            <input type="text" *ngIf="!isUpdateUser" name="" placeholder="LastName" class="form-control" id="lastName" formControlName="lastName">
+                            <input type="text" *ngIf="isUpdateUser" name="" placeholder="LastName" class="form-control" id="lastName" formControlName="lastName" [(ngModel)]="updatedUserData.last_name">
+                            <div *ngIf="userForm.get('lastName')?.invalid && userForm.get('lastName')?.touched" class="text-danger">
+                              <div *ngIf="userForm.get('lastName')?.errors?.required">Last Name is required.</div>
+                            </div>
+                        </div>
+                        <div class="mb-5">
+                            <input type="email" *ngIf="!isUpdateUser" name="" placeholder="Email" class="form-control" id="email" formControlName="email">
+                            <input type="email" *ngIf="isUpdateUser" name="" placeholder="Email" class="form-control" id="email" formControlName="email" [(ngModel)]="updatedUserData.email">
+                                <div *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched" class="text-danger">
+                                    <div *ngIf="userForm.get('email')?.errors?.required">Email is required.</div>
+                                    <div *ngIf="userForm.get('email')?.errors?.email">Invalid email format.</div>
+                                </div>
+                        </div>
+                        <div class="mb-5">
+                            <input type="text" *ngIf="!isUpdateUser" name="" placeholder="Designation" class="form-control" id="designation" formControlName="designation">
+                            <input type="text" *ngIf="isUpdateUser" name="" placeholder="Designation" class="form-control" id="designation" formControlName="designation" [(ngModel)]="updatedUserData.designation">
+                              <div *ngIf="userForm.get('designation')?.invalid && userForm.get('designation')?.touched" class="text-danger">
+                                <div *ngIf="userForm.get('designation')?.errors?.required">Designation is required.</div>
+                              </div>                               
+                        </div>
+                        <div class="mb-5">
+                            <input type="date" *ngIf="!isUpdateUser" name="" placeholder="DateOfBirth" class="form-control" id="dateOfBirth" formControlName="dateOfBirth">
+                            <input type="date" *ngIf="isUpdateUser" name="" placeholder="DateOfBirth" class="form-control" id="dateOfBirth" formControlName="dateOfBirth" [(ngModel)]="updatedUserData.date_of_birth">
+                                <div *ngIf="userForm.get('dateOfBirth')?.invalid && userForm.get('dateOfBirth')?.touched" class="text-danger">
+                                  <div *ngIf="userForm.get('dateOfBirth')?.errors?.required">Date of Birth is required.</div>
+                                </div>
+                        </div>
+                        <div class="form-group mb-5">
+                            <select id="companyName" *ngIf="isCompanyId" formControlName="companyName" class="form-control form-select" [(ngModel)]="company.id">
+                                <option value="" disabled selected>Choose a company</option> 
+                                <option *ngFor="let companyDetail of companyDetails" value= {{companyDetail.id}} [selected]="companyDetail.id === company.id">{{companyDetail.name}}-{{companyDetail.id}}</option>       
+                            </select>
+                            <select id="companyName" *ngIf="(!isUpdateUser&&!isCompanyId)" formControlName="companyName" class="form-control form-select">
+                                <option value="" disabled>Choose a company</option> 
+                                <option *ngFor="let companyDetail of companyDetails" value={{companyDetail.id}}>{{companyDetail.name}} - {{companyDetail.id}}</option>       
+                            </select>
+                            <select id="companyName" *ngIf="isUpdateUser" formControlName="companyName" class="form-control form-select" [(ngModel)]="updatedUserData.company_id">
+                                <option value="" disabled selected>Choose a company</option> 
+                                <option *ngFor="let companyDetail of companyDetails" value= {{companyDetail.id}} [selected]="companyDetail.id === updatedUserData.company_id">{{companyDetail.name}}-{{companyDetail.id}}</option>       
+                            </select>
+                            <div *ngIf="userForm.get('companyName')?.invalid && userForm.get('companyName')?.touched" class="text-danger">
+                                <div *ngIf="userForm.get('companyName')?.errors?.required">Company Name is required.</div>
+                            </div>
+                        </div>
+                        <div>
+                            <button type="submit" class="register-btn form-control" [disabled]="userForm.invalid">{{isMigrateUser? "MIGRATE": isUpdateUser? "UPDATE": "REGISTER"}}</button>
+                        </div>
+                    </form>  
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

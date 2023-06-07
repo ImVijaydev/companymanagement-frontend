@@ -1,0 +1,40 @@
+<div *ngIf="isLoading">
+    <app-loading-spinner></app-loading-spinner>
+</div>
+    
+    
+<div class="main d-flex align-items-center" *ngIf="!isLoading">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 col-md-10 col-sm-12">
+                <div class="form-box px-5 py-4">
+                    <form class="companyForm" [formGroup]="companyForm" (ngSubmit)="onSubmit()">
+                        <h2 class="text-center mb-5">{{isUpdateCompany? "UPDATE COMPANY": "REGISTER COMPANY"}}</h2>
+                        <div class="mb-5">
+                            <input type="text" *ngIf="!isUpdateCompany" name="" placeholder="CompanyName" class="form-control" id="companyName" formControlName="companyName">
+                            <input type="text" *ngIf="isUpdateCompany" name="" placeholder="CompanyName" class="form-control" id="companyName" formControlName="companyName" [(ngModel)]="updatedCompanyData.name">
+                            <div *ngIf="companyForm.get('companyName')?.invalid && (companyForm.get('companyName')?.dirty || companyForm.get('companyName')?.touched)" class="text-danger">
+                                <div *ngIf="companyForm.get('companyName')?.errors?.required">Company Name is required.</div>
+                                <div *ngIf="companyForm.get('companyName')?.errors?.minlength">Company Name must be at least 3 characters long.</div>
+                            </div>
+                        </div>
+                        <div class="mb-5">
+                            <input type="text" *ngIf="!isUpdateCompany" name="" placeholder="CompanyAddress" class="form-control"
+                            id="companyAddress"  formControlName="companyAddress">
+                            <input type="text" *ngIf="isUpdateCompany" name="" placeholder="CompanyAddress" class="form-control"
+                            id="companyAddress" formControlName="companyAddress" [(ngModel)]="updatedCompanyData.address">
+                            <div *ngIf="companyForm.get('companyAddress')?.invalid && (companyForm.get('companyAddress')?.dirty || companyForm.get('companyAddress')?.touched)" class="text-danger">
+                                <div *ngIf="companyForm.get('companyAddress')?.errors?.required">Company Address is required.</div>
+                                <div *ngIf="companyForm.get('companyAddress')?.errors?.minlength">Company Address must be at least 6 characters long.</div>
+                            </div>
+                        </div>
+                        <div>
+                            <button type="submit" class="register-btn form-control" [disabled]="companyForm.invalid">{{isUpdateCompany? "UPDATE": "REGISTER"}}</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

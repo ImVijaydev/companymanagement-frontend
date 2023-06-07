@@ -1,0 +1,25 @@
+<h1 class="text-center header-text mt-5">COMPANIES LIST</h1>
+<div class="search-box mt-4">
+  <button *ngIf="isSearched" class="btn btn-secondary" (click)="goBack()">
+    <i class="fas fa-arrow-left"></i>
+  </button>
+  <input type="text" class="search-input" placeholder="Search by Company ID" [(ngModel)]="searchValue" #searchInput>
+  <button class="search-button" (click)="onSearchClick(searchInput.value)"><i class="fas fa-search"></i></button>
+</div>
+ <div class="box">
+    <div class="row">
+      <div class="col-lg-4 col-md-6 mb-4" *ngFor="let company of companies">
+        <div class="card" (click)="getCompanyDetail(company)">
+          <div class="card-body">
+            <h5 class="card-title">{{ company.name }}</h5>
+            <p class="card-text mt-4 mb-2">{{ company.address }}</p>
+            <p class="card-text">Company ID: {{ company.id }}</p>
+            <div class="d-flex justify-content-between">
+              <button class="btn btn-primary" (click)="onUpdateClick(company)">Update</button>
+              <button class="btn btn-danger" (click)="onDeleteClick(company)">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
